@@ -1,0 +1,225 @@
+.cart-items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+}
+
+.cart-item-image img {
+    max-width: 75px;
+    border-radius: 5px;
+}
+
+.cart-item-info {
+    flex: 1;
+    padding-left: 15px;
+}
+
+.cart-item-quantity input[type="number"] {
+    width: 50px;
+    text-align: center;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+
+.custom-duration-selection {
+    background-color: #1d1d1d;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.custom-duration-selection h4 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: x-large;
+}
+
+.time-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.time-selection label {
+    font-size: 14px;
+    margin-right: 10px;
+    color: #ccc;
+}
+
+.decrement-time,
+.increment-time {
+    background-color: #ffffff;
+    border: none;
+    color: #000000;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.additional-hours,
+.additional-minutes {
+    width: 60px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border: 1px solid #555;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.preset-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.preset-buttons button {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.preset-buttons button:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.session-duration,
+.standard-package,
+.additional-time-cost,
+.total-cost {
+    font-weight: bold;
+    color: #fff;
+}
+
+p {
+    color: #ccc;
+    margin: 5px 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.total-cost {
+    font-size: 18px;
+    color: #e0e0e0;
+}
+input.additional-hours {
+    padding: 11px 0px;
+}
+/* Hide the subtotal column */
+.woocommerce-cart .product-subtotal {
+    display: none;
+}
+.preset-buttons button:focus {
+    background: white;
+    color: black;
+}
+/* For Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+p.display-sd {display: block;font-size: 16px;margin: 15px 0px;}
+
+p.display-t {
+    padding: 15px 0px;
+    border-top: 1px solid gray;
+    font-weight: bold;
+}
+/* Custom Dashicon for the Appointments tab in the WooCommerce product data panel */
+.appintment_options a::before {
+    content: "\f338"!important; /* Dashicon Unicode for "calendar" icon */
+    font-family: "Dashicons";
+    margin-right: 5px;
+}
+
+/* Cart css  */
+.shop_table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cart-header, .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-header div, .cart-item div {
+    flex: 1;
+    text-align: center;
+}
+
+.cart-header {
+    font-weight: bold;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+.cart-header {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.time-unit{
+    background-color: #ffffff;
+    border: none;
+    color: #000000;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
