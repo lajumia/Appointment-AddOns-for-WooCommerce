@@ -50,26 +50,15 @@ Easily extend your WooCommerce appointment-based products with add-ons such as a
 
 1. **Add-on Options on Cart Page**  
    Customers can choose additional services and times for appointments.  
-   ![Add-on Options on Cart Page](assets/img/screenshot-2.png)
+   ![Add-on Options on Cart Page](assets/img/Screenshot-2.png)
 
 2. **Dynamic Price Updates**  
    Prices update automatically based on selected options.  
-   ![Dynamic Price Updates](assets/screenshot-3.png)
+   ![Dynamic Price Updates](assets/Screenshot-3.png)
 
 3. **Admin Settings for Add-Ons**  
    Manage add-on settings seamlessly within the WooCommerce product editor.  
-   ![Admin Settings for Add-Ons](assets/screenshot-1.png)
-
-## Screenshots
-
-1. **Add-on Options on Cart Page**  
-   Customers can choose additional services and times for appointments.
-
-2. **Dynamic Price Updates**  
-   Prices update automatically based on selected options.
-
-3. **Admin Settings for Add-Ons**  
-   Manage add-on settings seamlessly within the WooCommerce product editor.
+   ![Admin Settings for Add-Ons](assets/Screenshot-1.png)
 
 ---
 
