@@ -1,16 +1,16 @@
 <?php
 /*
  * Plugin Name:       Appointment Add-Ons for WooCommerce
- * Plugin URI:        https://yourwebsite.com/appointment-add-ons-for-woocommerce
+ * Plugin URI:        https://wordpress.org/plugins/search/appointment-addons-for-woocommerce/
  * Description:       Enhance WooCommerce appointment bookings with customizable add-on time options for flexible pricing and scheduling.
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Md Laju Miah
- * Author URI:        https://yourwebsite.com
+ * Author URI:        https://www.upwork.com/freelancers/~0149190c8d83bae2e2
  * License:           GPL v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://yourwebsite.com/appointment-add-ons-for-woocommerce
+ * Update URI:        https://github.com/lajumia/appointment-addons-for-woocommerce
  * Text Domain:       aafw
  * Domain Path:       /languages
  * Requires Plugins:  woocommerce
@@ -64,8 +64,8 @@ function aafw_admin_enqueue_scripts( $hook ) {
  * @param string $template_path The path of the template.
  * @return string Custom template path if found, otherwise the default template.
  */
-add_filter( 'woocommerce_locate_template', 'aafw_custom_cart_template', 10, 3 );
-function aafw_custom_cart_template( $template, $template_name, $template_path ) {
+add_filter( 'woocommerce_locate_template', 'aafw_cart_template', 10, 3 );
+function aafw_cart_template( $template, $template_name, $template_path ) {
     if ( 'cart/cart.php' === $template_name ) {
         $custom_template = plugin_dir_path( __FILE__ ) . 'templates/cart/cart.php';
         if ( file_exists( $custom_template ) ) {
@@ -87,8 +87,8 @@ function aafw_custom_cart_template( $template, $template_name, $template_path ) 
  * add-to-cart functionality. The class is only defined if it doesn't already 
  * exist to avoid redeclaring it.
  */
-add_action( 'init', 'aafw_register_custom_product_type' );
-function aafw_register_custom_product_type() {
+add_action( 'init', 'aafw_register_product_type' );
+function aafw_register_product_type() {
     if ( ! class_exists( 'WC_Product_Appointment' ) ) {
 
         class WC_Product_Appointment extends WC_Product {
@@ -413,7 +413,7 @@ function aafw_add_no_customization_checkbox( $cart_item, $cart_item_key ) {
 
 
 /**
- * Add the custom appointment duration field to the custom hook 'wa_custom_filed'.
+ * Add the custom appointment duration field to the custom hook 'aafw_custom_filed'.
  *
  * This function displays a custom appointment duration field in the cart for products of type 'appointment'.
  * It includes options for additional hours and preset buttons for selecting session durations.
@@ -422,7 +422,7 @@ function aafw_add_no_customization_checkbox( $cart_item, $cart_item_key ) {
  * @param string|null $cart_item_key The unique key for the cart item (optional, will iterate over cart if not provided).
  * @return void
  */
-add_action( 'wa_custom_filed', 'aafw_custom_appointment_duration_field', 10, 2 );
+add_action( 'aafw_custom_filed', 'aafw_custom_appointment_duration_field', 10, 2 );
 function aafw_custom_appointment_duration_field( $cart_item = null, $cart_item_key = null ) {
     if ( ! $cart_item && WC()->cart ) {
         foreach ( WC()->cart->get_cart() as $key => $item ) {
@@ -572,13 +572,13 @@ add_filter('woocommerce_get_item_data', 'aafw_display_custom_duration_and_cost',
 function aafw_display_custom_duration_and_cost($item_data, $cart_item) {
     if (isset($cart_item['additional_time']) && $cart_item['additional_time'] > 0) {
         $item_data[] = array(
-            'name'  => __('Additional Time', 'your-textdomain'),
+            'name'  => __('Additional Time', 'aafw'),
             'value' => sanitize_text_field($cart_item['additional_time'] . ' hours')
         );
     }
     if (isset($cart_item['additional_cost']) && $cart_item['additional_cost'] > 0) {
         $item_data[] = array(
-            'name'  => __('Additional Cost', 'your-textdomain'),
+            'name'  => __('Additional Cost', 'aafw'),
             'value' => wc_price($cart_item['additional_cost'])
         );
     }
@@ -685,34 +685,46 @@ function aafw_add_custom_data() {
     }
 }
 
+/**
+ * Registers the AJAX action for resetting cart items for logged-in users.
+ */
 add_action( 'wp_ajax_reset_cart_item', 'reset_cart_item' );
+
+/**
+ * Registers the AJAX action for resetting cart items for guest users.
+ */
 add_action( 'wp_ajax_nopriv_reset_cart_item', 'reset_cart_item' );
 
+/**
+ * Handles the AJAX request to reset a cart item.
+ *
+ * This function removes custom fields (e.g., 'additional_time' and 'additional_cost') 
+ * from a specific cart item, recalculates the cart totals, and sends a JSON response 
+ * with the updated total cost or an error message.
+ */
 function reset_cart_item() {
-    check_ajax_referer( 'update_cart_nonce', 'security' ); // Verify nonce for security
+    check_ajax_referer( 'update_cart_nonce', 'security' );
 
     $cart_item_key = sanitize_text_field( $_POST['cart_item_key'] );
 
     if ( isset( WC()->cart->cart_contents[ $cart_item_key ] ) ) {
-        // Remove custom fields from the cart item
         unset( WC()->cart->cart_contents[ $cart_item_key ]['additional_time'] );
         unset( WC()->cart->cart_contents[ $cart_item_key ]['additional_cost'] );
 
-        // Save and recalculate totals
         WC()->cart->set_session();
         WC()->cart->calculate_totals();
 
-        // Get the updated total cost (including the removed custom fields)
-        $updated_total = WC()->cart->get_total('raw'); // Get raw total (without currency formatting)
+        $updated_total = WC()->cart->get_total('raw');
 
         wp_send_json_success( [
             'message' => 'Cart item reset successfully.',
-            'updated_total' => $updated_total // Include the updated total
+            'updated_total' => $updated_total
         ] );
     } else {
         wp_send_json_error( 'Cart item not found.' );
     }
 }
+
 
 
 

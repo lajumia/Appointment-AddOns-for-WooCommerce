@@ -20,9 +20,6 @@ jQuery(document).ready(function($) {
         let additionalHours = parseInt($('.additional-hours').val()) || 0; // Get additional hours from the input
         let timeUnit = $('.time-unit').val(); // Get the selected time unit (hours or minutes)
 
-        //console.log("Base Price:", basePrice);
-        //console.log("Additional Rate per Hour:", additionalRatePerHour);
-        //console.log("Additional Hours:", additionalHours);
 
         // If time unit is minutes, convert the additional time to hours
         if (timeUnit === 'minutes') {

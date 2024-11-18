@@ -108,7 +108,7 @@
 								if ($product->get_type() === 'appointment' ) {
 								?>
 									<div class="cart-additional-filed">
-										<?php do_action( 'wa_custom_filed' );?>
+										<?php do_action( 'aafw_custom_filed' );?>
 									</div>
 								<?php	
 
