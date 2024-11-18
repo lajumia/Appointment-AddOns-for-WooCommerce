@@ -54,11 +54,11 @@ Easily extend your WooCommerce appointment-based products with add-ons such as a
 
 2. **Dynamic Price Updates**  
    Prices update automatically based on selected options.  
-   ![Dynamic Price Updates](assets/Screenshot-3.png)
+   ![Dynamic Price Updates](assets/img/Screenshot-3.png)
 
 3. **Admin Settings for Add-Ons**  
    Manage add-on settings seamlessly within the WooCommerce product editor.  
-   ![Admin Settings for Add-Ons](assets/Screenshot-1.png)
+   ![Admin Settings for Add-Ons](assets/img/Screenshot-1.png)
 
 ---
 
